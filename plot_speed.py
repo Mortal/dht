@@ -14,14 +14,14 @@ def main(filename):
         fig = plt.figure()
         fig.suptitle(testname)
         axes = fig.gca()
-        axes.set_ylabel('speed (operations/second)')
-        hi = max(max(x/y for x, y in series) for series in results.values())
+        axes.set_ylabel('throughput (million operations/second)')
+        hi = max(max(x/y/1e6 for x, y in series) for series in results.values())
         axes.set_ylim(bottom=0, top=hi * 1.2)
-        axes.set_xlabel('number of operations')
+        axes.set_xlabel('number of operations (millions)')
 
         def show(data, *args, **kwargs):
-            xs = [x for x, y in data]
-            ys = [x/y for x, y in data]
+            xs = [x/1e6 for x, y in data]
+            ys = [x/y/1e6 for x, y in data]
             axes.plot(xs, ys, *args, **kwargs)
 
         if 'DenseTable' in results:
