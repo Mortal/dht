@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy
 import json
 
+
 def main(filename):
     with open(filename) as f:
         data = json.load(f)

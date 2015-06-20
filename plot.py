@@ -1,29 +1,30 @@
 from __future__ import division
 import sys
-from matplotlib.pyplot import *
+import matplotlib.pyplot as plt
 import numpy
+
 
 def main(filename, outfilename):
     data = numpy.genfromtxt(filename)
 
     # plot the graph and save it
     if filename == 'figure-1-data.txt':
-        suptitle('Memory allocated (log/log plot)')
-        ylabel('bytes of memory allocated')
+        plt.suptitle('Memory allocated (log/log plot)')
+        plt.ylabel('bytes of memory allocated')
     elif filename == 'figure-2-data.txt':
-        suptitle('Memory written (log/log plot)')
-        ylabel('bytes of memory written')
-    xlabel('number of entries')
+        plt.suptitle('Memory written (log/log plot)')
+        plt.ylabel('bytes of memory written')
+    plt.xlabel('number of entries')
 
     index = data[:,0]
     series1 = data[:,1]
     series2 = data[:,2]
     series3 = data[:,3]
-    loglog(index, series1, '-', color='#cccccc', label='dense_hash_map (open addressing)')
-    loglog(index, series2, 'b-', label='open addressing')
-    loglog(index, series3, 'r-', label='Close table')
-    legend(loc='upper left')
-    savefig(outfilename, format='png')
+    plt.loglog(index, series1, '-', color='#cccccc', label='dense_hash_map (open addressing)')
+    plt.loglog(index, series2, 'b-', label='open addressing')
+    plt.loglog(index, series3, 'r-', label='Close table')
+    plt.legend(loc='upper left')
+    plt.savefig(outfilename, format='png')
 
     # compute and print summary information about which is bigger
     r1 = []
