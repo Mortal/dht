@@ -30,4 +30,6 @@ def main(filename):
         axes.legend(loc='best')
         fig.savefig(testname + "-speed.png", format='png')
 
-main(sys.argv[1])
+
+if __name__ == "__main__":
+    main(sys.argv[1])
